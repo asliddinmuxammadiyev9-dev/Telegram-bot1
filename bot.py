@@ -28,13 +28,44 @@ def start(message):
 
 @bot.message_handler(func=lambda message: True)
 def buttons(message):
-    if message.text == "🎬 Anime":
-        bot.send_message(message.chat.id, "Anime kodini yuboring. Masalan: 1")
 
-    elif message.text == "1":
+    if message.text == "🎬 Anime":
         bot.send_message(
             message.chat.id,
-            "⚔️ Solo Leveling\n\n⭐ Janr: Action, Fantasy\n📅 Yili: 2024"
+            "Anime kodini yuboring:\n\n"
+            "1 - Solo Leveling"
+        )
+
+    elif message.text == "1":
+
+        markup = types.InlineKeyboardMarkup()
+
+        watch_btn = types.InlineKeyboardButton(
+            "▶️ Ko'rish",
+            url="https://t.me/+FBTBF49JT6IyNzUy"
+        )
+
+        markup.add(watch_btn)
+
+        bot.send_message(
+            message.chat.id,
+            "⚔️ Solo Leveling\n\n"
+            "⭐ Janr: Action, Fantasy\n"
+            "📅 Yili: 2024\n\n"
+            "🎬 Barcha qismlar kanalda mavjud.",
+            reply_markup=markup
+        )
+
+    elif message.text == "🎥 Kino":
+        bot.send_message(
+            message.chat.id,
+            "🎥 Kino bo'limi hozircha bo'sh."
+        )
+
+    elif message.text == "ℹ️ Yordam":
+        bot.send_message(
+            message.chat.id,
+            "Anime yoki kino kodini yuboring."
         )
 
 @app.route("/")
