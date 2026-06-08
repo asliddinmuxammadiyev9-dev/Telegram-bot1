@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
 
-TOKEN = "8811157992:AAFxsfGVx2tfZ7hJl86dhujDLkWQjyCxXoc"
+TOKEN = "8811157992:AAGhHV8MntMhffe1PT2UPSHNNqzNSaBnElE"
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -16,33 +16,23 @@ def start(message):
     markup.add(anime_btn, kino_btn)
     markup.add(yordam_btn)
 
-    text = """
-🎬 Assalomu alaykum!
-
-🌸 AniLife Bot 🌸
-
-🤖 Eng sara animelar
-🎞 HD sifatdagi qismlar
-⚡ Tez va qulay foydalanish
-
-👇 Kerakli bo'limni tanlang
-"""
-
-    bot.send_message(message.chat.id, text, reply_markup=markup)
+    bot.send_message(
+        message.chat.id,
+        "🌸 AniLife Bot 🌸\n\n👇 Kerakli bo'limni tanlang",
+        reply_markup=markup
+    )
 
 @bot.message_handler(func=lambda message: True)
 def buttons(message):
     if message.text == "🎬 Anime":
-        bot.send_message(message.chat.id, "Anime bo'limiga xush kelibsiz!")
+        bot.send_message(message.chat.id, "Anime kodini yuboring. Masalan: 1")
 
-    elif message.text == "🎥 Kino":
-        bot.send_message(message.chat.id, "Kino bo'limiga xush kelibsiz!")
-
-    elif message.text == "ℹ️ Yordam":
+    elif message.text == "1":
         bot.send_message(
             message.chat.id,
-            "Anime yoki kino nomini yuboring. Yordam kerak bo'lsa admin bilan bog'laning."
+            "⚔️ Solo Leveling\n\n⭐ Janr: Action, Fantasy\n📅 Yili: 2024"
         )
 
 print("Bot ishga tushdi...")
 bot.infinity_polling()
+
