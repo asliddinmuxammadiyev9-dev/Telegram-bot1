@@ -1,9 +1,13 @@
+import os
 import telebot
 from telebot import types
+from flask import Flask
+from threading import Thread
 
 TOKEN = "8811157992:AAGhHV8MntMhffe1PT2UPSHNNqzNSaBnElE"
 
 bot = telebot.TeleBot(TOKEN)
+app = Flask(__name__)
 
 @bot.message_handler(commands=['start'])
 def start(message):
@@ -33,6 +37,17 @@ def buttons(message):
             "⚔️ Solo Leveling\n\n⭐ Janr: Action, Fantasy\n📅 Yili: 2024"
         )
 
-print("Bot ishga tushdi...")
-bot.infinity_polling()
+@app.route("/")
+def home():
+    return "AniLife Bot ishlayapti!"
 
+def run_bot():
+    print("Bot ishga tushdi...")
+    bot.infinity_polling(skip_pending=True)
+
+if __name__ == "__main__":
+    Thread(target=run_bot).start()
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 10000))
+    )
